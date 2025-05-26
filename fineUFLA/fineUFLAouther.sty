@@ -1,0 +1,157 @@
+\NeedsTeXFormat{LaTeX2e}
+\mode<presentation>
+
+% Requirements
+\RequirePackage{tikz}
+\RequirePackage{graphicx}
+\RequirePackage{adjustbox}
+\RequirePackage{calc}
+
+\graphicspath{{fineUFLA/imgs/}}
+
+% Settings
+\newlength{\smalllogowidth}
+\setlength{\smalllogowidth}{2.75cm}
+\newlength{\houtermargin}
+\newlength{\voutermargin}
+\setlength{\houtermargin}{\smalllogowidth/4}
+\setlength{\voutermargin}{\smalllogowidth/5}
+
+\newlength{\headerwidth}
+\setlength{\headerwidth}{\paperwidth}
+
+% OUTER THEME
+% header, footer, frame title, etc.
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=2\houtermargin, text margin right=2\houtermargin}
+
+% HEADLINE
+\setbeamerfont{headline}{size=\footnotesize, shape=\normalfont}
+
+\setlength{\fboxsep}{0pt}
+
+\defbeamertemplate{headline}{UFLA-full}{%
+\donotcoloroutermaths
+\vspace*{\voutermargin}%
+\hspace*{\houtermargin}%
+\parbox[b][0.6\smalllogowidth][c]{\smalllogowidth}{\includegraphics[width=\smalllogowidth]{logoUFLA}}%
+\hspace*{\houtermargin}%
+\vspace*{0.5\voutermargin}% Adjust space between headline and content. Not too satisfying
+\parbox[b][0.49\smalllogowidth][c]{\dimexpr\headerwidth-\smalllogowidth-4\houtermargin\relax}{%
+\parbox[c][.1\smalllogowidth][c]{\dimexpr\headerwidth-\smalllogowidth-4\houtermargin\relax}{%
+\usebeamercolor[fg]{section in head/foot}%
+\usebeamerfont{section in head/foot} \insertsection%
+}
+\parbox[b][.3\smalllogowidth][c]{\dimexpr\headerwidth-\smalllogowidth-4\houtermargin\relax}{%
+\usebeamercolor[fg]{frametitle}%
+\usebeamerfont{frametitle}%
+\vbox{}\vskip 0ex%
+\strut\insertframetitle\strut\par%
+{%
+  \ifx\insertframesubtitle\@empty%
+  \else%
+  {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle\strut\par}%
+  \fi
+}%
+}%
+\vfill
+\hrule height 1pt%
+}%
+}
+
+
+\defbeamertemplate{headline}{UFLA-frametitle-only}{%
+\donotcoloroutermaths
+\vspace*{\voutermargin}%
+\hspace*{\houtermargin}%
+\parbox[c][0.5\smalllogowidth][b]{\smalllogowidth}{\includegraphics[width=\smalllogowidth]{logoUFLA}}%
+\hspace*{\houtermargin}%
+\vspace{0.5\voutermargin}%
+\parbox[c][0.55\smalllogowidth][b]{\dimexpr\headerwidth-\smalllogowidth-4\houtermargin\relax}{%
+	\parbox[b][.23\smalllogowidth][b]{\dimexpr\headerwidth-\smalllogowidth-4\houtermargin\relax}{%
+		\usebeamercolor[fg]{frametitle}%
+		\usebeamerfont{frametitle}%
+		\vbox{}\vskip 0ex%
+		\strut\insertframetitle\strut\par%
+		{%
+			\ifx\insertframesubtitle\@empty%
+			\else%
+			{\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle\strut\par}%
+			\fi
+		}%
+	}%
+	
+	\hrule height 1pt%
+}%
+}
+
+\defbeamertemplate{headline}{UFLA-section-only}{%
+\donotcoloroutermaths
+\vspace*{\voutermargin}
+\hspace*{\houtermargin}%
+\parbox[t][0.5\smalllogowidth][t]{\smalllogowidth}{\includegraphics[width=\smalllogowidth]{logoUFLA}}%
+\hspace*{\houtermargin}%
+\begin{beamercolorbox}[wd=\dimexpr\headerwidth-\smalllogowidth-4\houtermargin\relax]{section in head/foot}
+\usebeamerfont{section in head/foot}
+\parbox[c][0.5\smalllogowidth][c]{\dimexpr\headerwidth-\smalllogowidth-4\houtermargin\relax}{%
+\insertsection%
+}%
+\hrule height 1pt%
+\end{beamercolorbox}
+}
+
+% Define \insertframetile preliminarily, otherwise the compiler complains. See
+% https://tex.stackexchange.com/questions/236218/beamer-headline-with-frametitle#comment560126_236218
+\AtBeginDocument{
+\def\insertframetitle{}
+\def\insertframesubtitle{}
+}
+
+\setbeamertemplate{headline}[UFLA-full]
+
+% FOOTLINE
+
+% Define a new footline template with entries left, center, and right
+\newcommand*{\deffootline}[4]{%
+\defbeamertemplate{footline}{#1}{%
+\donotcoloroutermaths
+\begin{beamercolorbox}[dp=\voutermargin]{footline}%
+\hspace*{\houtermargin}%
+\rlap{#2}%
+\hfill
+#3
+\hfill
+\llap{#4}%
+\hspace*{\houtermargin}%
+\end{beamercolorbox}%
+}%
+}
+
+% Set the footline template with entries left, center, and right
+\newcommand*{\setfootline}[3]{%
+\setbeamertemplate{footline}{%
+\donotcoloroutermaths
+\vspace{0.5cm}
+\begin{beamercolorbox}[dp=\voutermargin]{footline}%
+\hspace*{\houtermargin}%
+\rlap{#1}%
+\hfill
+#2
+\hfill
+\llap{#3}%
+\hspace*{\houtermargin}%
+\end{beamercolorbox}%
+}%
+}
+
+\deffootline{UFLA-full}{\insertshortauthor}{\insertshorttitle}{\insertframenumber/\inserttotalframenumber}
+\deffootline{UFLA-noauthor}{\insertshorttitle}{}{\insertframenumber/\inserttotalframenumber}
+
+\setbeamertemplate{footline}[UFLA-full]
+
+% FRAME
+% Frametitle is defined in headline; just cancel out the \vskip from beamer
+\setbeamertemplate{frametitle}{\vskip-0.25em}
+
+\mode<all>

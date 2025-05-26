@@ -1,0 +1,60 @@
+\mode<presentation>
+
+\RequirePackage{kvoptions}
+
+% Options
+\SetupKeyvalOptions{%
+family=ufla,
+prefix=ufla@
+}
+\DeclareStringOption[pdflatex]{engine}
+\DeclareStringOption[sf]{mathshape}
+\ProcessKeyvalOptions{ufla}
+
+
+\newcommand*{\ufla@engine@pdflatex}{%
+% Default to Helvetica (sans serif) and Bitstream Charter (serif)
+\RequirePackage[scaled=.92]{helvet}
+\usepackage{XCharter}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[utf8]{inputenc}
+}
+
+\newcommand*{\ufla@mathshape@sf}{%
+% Set operators to sans with sans math fonts, and then all letters and text
+% back to the current sans serif font.
+\RequirePackage[OT1]{fontenc}
+\RequirePackage[onlymath]{sansmathfonts}
+\RequirePackage[T1]{fontenc}
+\let\oldfamilydefault\familydefault
+\renewcommand{\familydefault}{\sfdefault}
+\RequirePackage[italic]{mathastext}
+\renewcommand{\familydefault}{\oldfamilydefault}
+}
+\let\ufla@engine@latex\ufla@engine@pdflatex
+
+\newcommand*{\ufla@mathshape@rm}{%
+\let\oldfamilydefault\familydefault
+\renewcommand{\familydefault}{\rmdefault}
+\RequirePackage[italic]{mathastext}
+\renewcommand{\familydefault}{\oldfamilydefault}
+}
+
+\newcommand*{\ufla@mathshape@custom}{%
+}
+
+% Set general fonts
+\csname ufla@engine@\ufla@engine\endcsname\relax
+\csname ufla@mathshape@\ufla@mathshape\endcsname\relax
+
+% Set beamer fonts
+\setbeamerfont{title}{size=\huge}
+\setbeamerfont{subtitle}{size=\normalsize, series=\normalfont}
+
+\setbeamerfont{section in head/foot}{size=\small}
+\setbeamerfont{section page}{size=\fontsize{48}{52}\selectfont, series=\bfseries}
+
+\setbeamerfont{footline}{shape=\normalfont, size=\footnotesize}
+
+
+\mode<all>

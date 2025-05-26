@@ -1,0 +1,139 @@
+\NeedsTeXFormat{LaTeX2e}
+\mode<presentation>
+
+% Requirements
+\RequirePackage{tikz}
+\RequirePackage{graphicx}
+\RequirePackage{adjustbox}
+
+\graphicspath{{fineUFLA/imgs}}
+
+% INNER THEME
+% title, parts, blocks, etc.
+\newlength{\largelogowidth}
+\setlength{\largelogowidth}{4.5cm}
+\newlength{\innermargin}
+\setlength{\innermargin}{\largelogowidth/3}
+
+
+
+\def\titlelogofilename{logoUFLA}
+
+
+% TITLE PAGE
+\defbeamertemplate{title page}{center}{%
+\donotcoloroutermaths
+\begin{tikzpicture}[remember picture, overlay]
+\draw[draw=azul UFLA, ultra thick] (-2.5cm, -3.0cm) -- ++(2.0cm, 0) arc (-90:0:3cm) -- ++(0, 3cm);
+\draw[draw=azul UFLA, ultra thick] (27cm, -4.0cm) -- ++(-10.5cm, -24.0cm) arc (0:70:8cm) -- cycle;
+%\draw[draw=azul UFLA, ultra thick] (25.5cm, -6.5cm) -- ++(-10cm, -15.0cm) arc (0:90:3cm) -- cycle;
+\node[anchor = north, scale=0.9, inner sep = 1.4cm, opacity=1.0] at (current page.north) {\includegraphics[width=6.5cm]{\titlelogofilename}};
+\end{tikzpicture}%
+
+\vspace{.25\paperheight}%
+\begin{center}
+\vfill
+\usebeamercolor[fg]{title}%
+\parbox[b][.25\paperheight][c]{0.8\textwidth}{
+	\centering\usebeamerfont{title}\inserttitle\\
+	\usebeamercolor[fg]{subtitle}%
+	\usebeamerfont{subtitle}\insertsubtitle\\
+}
+\vfill
+\usebeamercolor[fg]{author}%
+\usebeamerfont{author}%
+{\insertauthor}\\
+\vfill
+\usebeamercolor[fg]{institute}%
+\insertinstitute\\
+\usebeamercolor[fg]{date}%
+\insertdate
+\end{center}
+\vspace{1em}%
+}
+
+% Default title template is center
+\setbeamertemplate{title page}[center]
+
+% SECTION PAGE
+\setbeamertemplate{section page}{%
+\donotcoloroutermaths%
+\begin{tikzpicture}[remember picture, overlay]
+\node[anchor = north west, inner sep = \innermargin, opacity=1] at (current page.north west) {\includegraphics[width=\largelogowidth]{logoUFLA-preto}};
+\node[anchor = north west, scale=0.3, opacity=1.0, xshift=75.0cm, yshift=7.5cm, rotate=-20] at (current page.north west) {\includegraphics{spiral}};
+%\node[anchor = north west, scale=0.3, opacity=1.0, xshift=45.0cm, yshift=7.5cm, rotate=20] at (current page.north west) {\includegraphics{spiral}};
+\end{tikzpicture}%
+\vfill%
+\usebeamercolor[fg]{section title}%
+\usebeamerfont{section page}%
+\parbox[t][96pt][t]{0.7\textwidth}{\raggedright%
+	{\thesection.~\insertsection}}%
+\vspace{1.0cm}%
+}
+
+
+% TOC SLIDE
+\newcommand*{\inserttoc}[1]{%
+{\setbeamertemplate{headline}{}%
+\setbeamertemplate{footline}{}%
+\setbeamercolor{background canvas}{use=section title, bg=section title.bg}%
+\begin{frame}[b]
+\begin{tikzpicture}[remember picture, overlay]
+	\node[anchor = north west, inner sep = \innermargin] at (current page.north west) {\includegraphics[width=4.5cm]{logoUFLA-preto}};
+	\node[anchor = north west, fill=white, opacity=0.97, rectangle, minimum size=20cm, rotate=12] at (7cm, 4cm) {};
+\end{tikzpicture}%
+
+\vfill%
+\parbox[b][96pt][t]{0.5\textwidth}{%
+	\usebeamerfont{section page}#1}%
+\hfill%
+\setbeamertemplate{section in toc}[sections numbered]%
+\parbox[b][11.5cm][c]{0.42\textwidth}{\large\bf\tableofcontents}%
+\vspace{1cm}
+\end{frame}}%
+}
+
+
+% END SLIDE
+\newcommand*{\insertendpage}{%
+{\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{}
+\setbeamercolor{background canvas}{use=end title, bg=end title.bg}% Why doesn't parent work??
+\begin{frame}[t]
+\let\linesfilename\endtitlelinesfilename
+\begin{tikzpicture}[remember picture, overlay]
+\draw[draw=white, ultra thick] (-2.5cm, -3.0cm) -- ++(2.0cm, 0) arc (-90:0:3cm) -- ++(0, 3cm);
+\draw[draw=white, ultra thick] (27cm, -4.0cm) -- ++(-10cm, -24.0cm) arc (0:90:8cm) -- cycle;
+\node[anchor = center] at (current page.center) {\includegraphics[width=7cm]{logoUFLA-branco}};
+\end{tikzpicture}%
+\end{frame}}%
+}
+
+% BLOCKS
+
+\AtBeginDocument{
+%%%% changing block from https://tex.stackexchange.com/a/524625/216213
+\addtobeamertemplate{block begin}{%
+    \let\oldinsertblocktitle\insertblocktitle%
+    \def\insertblocktitle{\oldinsertblocktitle\par\kern-.5\prevdepth}% probably font dependent
+}{}
+\addtobeamertemplate{block alerted begin}{%
+    \let\oldinsertblocktitle\insertblocktitle%
+    \def\insertblocktitle{\oldinsertblocktitle\par\kern-.5\prevdepth}% probably font dependent
+}{}
+\addtobeamertemplate{block example begin}{%
+    \let\oldinsertblocktitle\insertblocktitle%
+    \def\insertblocktitle{\oldinsertblocktitle\par\kern-.5\prevdepth}% probably font dependent
+}{}
+%%%% end changing block
+}
+
+% ITEMIZE AND ENUMERATE
+
+\setbeamertemplate{itemize items}[circle]
+
+% BIBLIOGRAPHY
+
+\setbeamertemplate{bibliography item}[text]
+
+\mode<all>
