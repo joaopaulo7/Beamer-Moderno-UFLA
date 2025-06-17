@@ -1,5 +1,5 @@
 # Tema de apresentação Não-Oficial em beamer - UFLA 🎓
-Um tema moderno de apresentações utilizando latex/beamer e seguindo, no geral, o [manual de identidade visual da UFLA](https://ufla.br/comunicacao/identidade-visual)  
+Um tema moderno de apresentações utilizando LaTeX/Beamer e seguindo, no geral, o [manual de identidade visual da UFLA](https://ufla.br/comunicacao/identidade-visual)  
 
 [PDF de exemplo](https://github.com/joaopaulo7/Beamer-Moderno-UFLA/blob/main/sample.pdf)
 
