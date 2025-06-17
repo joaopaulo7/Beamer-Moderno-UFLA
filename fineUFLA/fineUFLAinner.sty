@@ -22,34 +22,40 @@
 
 % TITLE PAGE
 \defbeamertemplate{title page}{center}{%
-\donotcoloroutermaths
-\begin{tikzpicture}[remember picture, overlay]
-\draw[draw=azul UFLA, ultra thick] (-2.5cm, -3.0cm) -- ++(2.0cm, 0) arc (-90:0:3cm) -- ++(0, 3cm);
-\draw[draw=azul UFLA, ultra thick] (27cm, -4.0cm) -- ++(-10.5cm, -24.0cm) arc (0:70:8cm) -- cycle;
-%\draw[draw=azul UFLA, ultra thick] (25.5cm, -6.5cm) -- ++(-10cm, -15.0cm) arc (0:90:3cm) -- cycle;
-\node[anchor = north, scale=0.9, inner sep = 1.4cm, opacity=1.0] at (current page.north) {\includegraphics[width=6.5cm]{\titlelogofilename}};
-\end{tikzpicture}%
-
-\vspace{.25\paperheight}%
-\begin{center}
-\vfill
-\usebeamercolor[fg]{title}%
-\parbox[b][.25\paperheight][c]{0.8\textwidth}{
-	\centering\usebeamerfont{title}\inserttitle\\
-	\usebeamercolor[fg]{subtitle}%
-	\usebeamerfont{subtitle}\insertsubtitle\\
-}
-\vfill
-\usebeamercolor[fg]{author}%
-\usebeamerfont{author}%
-{\insertauthor}\\
-\vfill
-\usebeamercolor[fg]{institute}%
-\insertinstitute\\
-\usebeamercolor[fg]{date}%
-\insertdate
-\end{center}
-\vspace{1em}%
+	\donotcoloroutermaths
+	\begin{tikzpicture}[remember picture, overlay]
+		\draw[draw=azul UFLA, ultra thick] (-2.5cm, -3.0cm) -- ++(2.0cm, 0) arc (-90:0:3cm) -- ++(0, 3cm);
+		\draw[draw=azul UFLA, ultra thick] (27cm, -4.0cm) -- ++(-10.5cm, -24.0cm) arc (0:70:8cm) -- cycle;
+		%\draw[draw=azul UFLA, ultra thick] (25.5cm, -6.5cm) -- ++(-10cm, -15.0cm) arc (0:90:3cm) -- cycle;
+		\node[anchor = north, inner sep = 2em] at (current page.north) {\includegraphics[width=7cm]{\titlelogofilename}};
+	\end{tikzpicture}%
+	
+	\vspace{.3\paperheight}%
+	\begin{center}
+		\vfill
+		\usebeamercolor[fg]{title}%
+		\usebeamerfont{title}
+		\inserttitle\par
+		
+		\usebeamercolor[fg]{subtitle}%
+		\usebeamerfont{subtitle}
+		\insertsubtitle\par
+		
+		\vfill
+		\usebeamercolor[fg]{author}%
+		\usebeamerfont{author}%
+		\insertauthor\par
+		
+		\vfill
+		\usebeamerfont{institute}%
+		\usebeamercolor[fg]{institute}%
+		\insertinstitute\par
+		
+		\usebeamerfont{date}%
+		\usebeamercolor[fg]{date}%
+		\bfseries\insertdate
+	\end{center}
+	\vspace{1em}%
 }
 
 % Default title template is center

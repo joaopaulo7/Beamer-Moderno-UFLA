@@ -4,8 +4,8 @@
 
 % Options
 \SetupKeyvalOptions{%
-family=ufla,
-prefix=ufla@
+	family=ufla,
+	prefix=ufla@
 }
 \DeclareStringOption[pdflatex]{engine}
 \DeclareStringOption[sf]{mathshape}
@@ -13,31 +13,31 @@ prefix=ufla@
 
 
 \newcommand*{\ufla@engine@pdflatex}{%
-% Default to Helvetica (sans serif) and Bitstream Charter (serif)
-\RequirePackage[scaled=.92]{helvet}
-\usepackage{XCharter}
-\renewcommand{\familydefault}{\sfdefault}
-\usepackage[utf8]{inputenc}
+	% Default to Helvetica (sans serif) and Bitstream Charter (serif)
+	\RequirePackage[scaled=.92]{helvet}
+	\usepackage{XCharter}
+	\renewcommand{\familydefault}{\sfdefault}
+	\usepackage[utf8]{inputenc}
 }
 
 \newcommand*{\ufla@mathshape@sf}{%
-% Set operators to sans with sans math fonts, and then all letters and text
-% back to the current sans serif font.
-\RequirePackage[OT1]{fontenc}
-\RequirePackage[onlymath]{sansmathfonts}
-\RequirePackage[T1]{fontenc}
-\let\oldfamilydefault\familydefault
-\renewcommand{\familydefault}{\sfdefault}
-\RequirePackage[italic]{mathastext}
-\renewcommand{\familydefault}{\oldfamilydefault}
+	% Set operators to sans with sans math fonts, and then all letters and text
+	% back to the current sans serif font.
+	\RequirePackage[OT1]{fontenc}
+	\RequirePackage[onlymath]{sansmathfonts}
+	\RequirePackage[T1]{fontenc}
+	\let\oldfamilydefault\familydefault
+	\renewcommand{\familydefault}{\sfdefault}
+	\RequirePackage[italic]{mathastext}
+	\renewcommand{\familydefault}{\oldfamilydefault}
 }
 \let\ufla@engine@latex\ufla@engine@pdflatex
 
 \newcommand*{\ufla@mathshape@rm}{%
-\let\oldfamilydefault\familydefault
-\renewcommand{\familydefault}{\rmdefault}
-\RequirePackage[italic]{mathastext}
-\renewcommand{\familydefault}{\oldfamilydefault}
+	\let\oldfamilydefault\familydefault
+	\renewcommand{\familydefault}{\rmdefault}
+	\RequirePackage[italic]{mathastext}
+	\renewcommand{\familydefault}{\oldfamilydefault}
 }
 
 \newcommand*{\ufla@mathshape@custom}{%
@@ -48,8 +48,11 @@ prefix=ufla@
 \csname ufla@mathshape@\ufla@mathshape\endcsname\relax
 
 % Set beamer fonts
-\setbeamerfont{title}{size=\huge}
+\setbeamerfont{title}{size=\Large}
 \setbeamerfont{subtitle}{size=\normalsize, series=\normalfont}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\normalsize}
+\setbeamerfont{date}{size=\normalsize}
 
 \setbeamerfont{section in head/foot}{size=\small}
 \setbeamerfont{section page}{size=\fontsize{48}{52}\selectfont, series=\bfseries}
